@@ -112,7 +112,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="music," />
+  <meta name="keywords" content="Java,异常," />
 
 
 
@@ -128,19 +128,20 @@
 
 
 
-<meta name="description" content="能够握紧的就别放了能够拥抱的就别拉扯时间着急的 冲刷着剩下了什么">
-<meta name="keywords" content="music">
+<meta name="description" content="原文出处： chenssy    Java的基本理念是“结构不佳的代码不能运行”！！！！！  大成若缺，其用不弊。 大盈若冲，其用不穷。   在这个世界不可能存在完美的东西，不管完美的思维有多么缜密，细心，我们都不可能考虑所有的因素，这就是所谓的智者千虑必有一失。同样的道理，计算机的世界也是不完美的，异常情况随时都会发生，我们所需要做的就是避免那些能够避免的异常，处理那些不能避免的异常。这里我将记">
+<meta name="keywords" content="Java,异常">
 <meta property="og:type" content="article">
-<meta property="og:title" content="岁月神偷">
-<meta property="og:url" content="http://jiangweichen.me/posts/Music/2017-06-23-岁月神偷.html">
+<meta property="og:title" content="Java异常（一）">
+<meta property="og:url" content="http://jiangweichen.me/posts/Java/2017-07-31-Java异常（一）.html">
 <meta property="og:site_name" content="Chen&#39;s Blog">
-<meta property="og:description" content="能够握紧的就别放了能够拥抱的就别拉扯时间着急的 冲刷着剩下了什么">
-<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/suiyueshentou.jpg">
-<meta property="og:updated_time" content="2017-07-02T02:56:16.317Z">
+<meta property="og:description" content="原文出处： chenssy    Java的基本理念是“结构不佳的代码不能运行”！！！！！  大成若缺，其用不弊。 大盈若冲，其用不穷。   在这个世界不可能存在完美的东西，不管完美的思维有多么缜密，细心，我们都不可能考虑所有的因素，这就是所谓的智者千虑必有一失。同样的道理，计算机的世界也是不完美的，异常情况随时都会发生，我们所需要做的就是避免那些能够避免的异常，处理那些不能避免的异常。这里我将记">
+<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/exception.png">
+<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/Exception2.PNG">
+<meta property="og:updated_time" content="2017-07-31T13:26:54.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="岁月神偷">
-<meta name="twitter:description" content="能够握紧的就别放了能够拥抱的就别拉扯时间着急的 冲刷着剩下了什么">
-<meta name="twitter:image" content="http://os73rgvu2.bkt.clouddn.com/suiyueshentou.jpg">
+<meta name="twitter:title" content="Java异常（一）">
+<meta name="twitter:description" content="原文出处： chenssy    Java的基本理念是“结构不佳的代码不能运行”！！！！！  大成若缺，其用不弊。 大盈若冲，其用不穷。   在这个世界不可能存在完美的东西，不管完美的思维有多么缜密，细心，我们都不可能考虑所有的因素，这就是所谓的智者千虑必有一失。同样的道理，计算机的世界也是不完美的，异常情况随时都会发生，我们所需要做的就是避免那些能够避免的异常，处理那些不能避免的异常。这里我将记">
+<meta name="twitter:image" content="http://os73rgvu2.bkt.clouddn.com/exception.png">
 
 
 
@@ -168,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="http://jiangweichen.me/posts/Music/2017-06-23-岁月神偷.html"/>
+  <link rel="canonical" href="http://jiangweichen.me/posts/Java/2017-07-31-Java异常（一）.html"/>
 
 
 
 
 
-  <title>岁月神偷 | Chen's Blog</title>
+  <title>Java异常（一） | Chen's Blog</title>
   
 
 
@@ -313,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/Music/2017-06-23-岁月神偷.html">
+    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/Java/2017-07-31-Java异常（一）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeichenJiang">
@@ -330,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">岁月神偷</h1>
+          <h1 class="post-title" itemprop="name headline">Java异常（一）</h1>
         
 
         <div class="post-meta">
@@ -342,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T18:35:50+08:00">
-                2017-06-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T20:42:16+08:00">
+                2017-07-31
               </time>
             
 
@@ -358,8 +359,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-02T10:56:16+08:00">
-                2017-07-02
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-31T21:26:54+08:00">
+                2017-07-31
               </time>
             
           </span>
@@ -377,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Music/" itemprop="url" rel="index">
-                    <span itemprop="name">Music</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -415,7 +416,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  240字
+                  2,134字
                 </span>
               
 
@@ -431,7 +432,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1分
+                  7分
                 </span>
               
             </div>
@@ -449,9 +450,49 @@
       
 
       
-        <h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://os73rgvu2.bkt.clouddn.com/suiyueshentou.jpg" alt="Markdown"></h2><blockquote class="blockquote-center"><p>能够握紧的就别放了<br>能够拥抱的就别拉扯<br>时间着急的 冲刷着<br>剩下了什么<br><a id="more"></a>原谅走过的那些曲折<br>原来留下的都是真的<br>纵然似梦啊 半醒着<br>笑着哭着都快活<br>谁让<br>时间是让人猝不及防的东西<br>晴时有风阴有时雨<br>争不过朝夕 又念着往昔<br>偷走了青丝却留住一个你<br>岁月是一场有去无回的旅行<br>好的坏的都是风景<br>别怪我贪心 只是不愿醒<br>因为你只为你愿和我一起<br>看云淡风轻<br>时间是让人猝不及防的东西<br>晴时有风阴有时雨<br>争不过朝夕 又念着往昔<br>偷走了青丝却留住一个你<br>岁月是一场有去无回的旅行<br>好的坏的都是风景<br>别怪我贪心 只是不愿醒<br>因为你只为你愿和我一起<br>看云淡风轻 </p>
+        <p>原文出处： <a href="http://www.cnblogs.com/chenssy/p/3438130.html" target="_blank" rel="external">chenssy</a></p>
+<div id="Mark"><img src="http://os73rgvu2.bkt.clouddn.com/exception.png" alt=""></div>
+
+<blockquote>
+<p>Java的基本理念是“结构不佳的代码不能运行”！！！！！</p>
 </blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="130" src="//music.163.com/outchain/player?type=2&id=28285910&auto=1&height=100"></iframe>
+<blockquote class="blockquote-center"><p>大成若缺，其用不弊。</p>
+<p>大盈若冲，其用不穷。 </p>
+</blockquote>
+<p>在这个世界不可能存在完美的东西，不管完美的思维有多么缜密，细心，我们都不可能考虑所有的因素，这就是所谓的智者千虑必有一失。同样的道理，计算机的世界也是不完美的，异常情况随时都会发生，我们所需要做的就是避免那些能够避免的异常，处理那些不能避免的异常。这里我将记录如何利用异常还程序一个“完美世界”。</p>
+<a id="more"></a>
+<h2 id="一、为什么要使用异常"><a href="#一、为什么要使用异常" class="headerlink" title="一、为什么要使用异常"></a>一、为什么要使用异常</h2><p>首先我们可以明确一点就是异常的处理机制可以确保我们程序的健壮性，提高系统可用率。虽然我们不是特别喜欢看到它，但是我们不能不承认它的地位，作用。有异常就说明程序存在问题，有助于我们及时改正。在我们的程序设计当做，任何时候任何地方因为任何原因都有可能会出现异常，在没有异常机制的时候我们是这样处理的：通过函数的返回值来判断是否发生了异常（这个返回值通常是已经约定好了的），调用该函数的程序负责检查并且分析返回值。虽然可以解决异常问题，但是这样做存在几个缺陷：</p>
+<p>1、 容易混淆。如果约定返回值为-11111时表示出现异常，那么当程序最后的计算结果真的为-1111呢？</p>
+<p>2、 代码可读性差。将异常处理代码和程序代码混淆在一起将会降低代码的可读性。</p>
+<p>3、 由调用函数来分析异常，这要求程序员对库函数有很深的了解。</p>
+<p>在OO中提供的异常处理机制是提供代码健壮的强有力的方式。使用异常机制它能够降低错误处理代码的复杂度，如果不使用异常，那么就必须检查特定的错误，并在程序中的许多地方去处理它，而如果使用异常，那就不必在方法调用处进行检查，因为异常机制将保证能够捕获这个错误，并且，只需在一个地方处理错误，即所谓的异常处理程序中。这种方式不仅节约代码，而且把“概述在正常执行过程中做什么事”的代码和“出了问题怎么办”的代码相分离。总之，与以前的错误处理方法相比，异常机制使代码的阅读、编写和调试工作更加井井有条。（摘自《Think in java 》）。</p>
+<p>在初学时，总是听老师说把有可能出错的地方记得加异常处理，刚刚开始还不明白，有时候还觉得只是多此一举，现在随着自己的不断深入，代码编写多了，渐渐明白了异常是非常重要的。</p>
+<h2 id="二、基本定义"><a href="#二、基本定义" class="headerlink" title="二、基本定义"></a>二、基本定义</h2><p>在《Think in java》中是这样定义异常的：</p>
+<blockquote>
+<p>异常情形是指阻止当前方法或者作用域继续执行的问题。</p>
+</blockquote>
+<p>在这里一定要明确一点：异常代码某种程度的错误，尽管Java有异常处理机制，但是我们不能以“正常”的眼光来看待异常，异常处理机制的原因就是告诉你：这里可能会或者已经产生了错误，您的程序出现了不正常的情况，可能会导致程序失败！</p>
+<p>那么什么时候才会出现异常呢？只有在你当前的环境下程序无法正常运行下去，也就是说程序已经无法来正确解决问题了，这时它所就会从当前环境中跳出，并抛出异常。抛出异常后，它首先会做几件事。首先，它会使用new创建一个异常对象，然后在产生异常的位置终止程序，并且从当前环境中弹出对异常对象的引用，这时。异常处理机制就会接管程序，并开始寻找一个恰当的地方来继续执行程序，这个恰当的地方就是异常处理程序，它的任务就是将程序从错误状态恢复，以使程序要么换一种方法执行，要么继续执行下去。</p>
+<p>总的来说异常处理机制就是当程序发生异常时，它强制终止程序运行，记录异常信息并将这些信息反馈给我们，由我们来确定是否处理异常。</p>
+<h2 id="三、异常体系"><a href="#三、异常体系" class="headerlink" title="三、异常体系"></a>三、异常体系</h2><p>java为我们提供了非常完美的异常处理机制，使得我们可以更加专心于我们的程序，在使用异常之前我们需要了解它的体系结构：</p>
+<p><img src="http://os73rgvu2.bkt.clouddn.com/Exception2.PNG" alt=""></p>
+<p>从上面这幅图可以看出，<strong>Throwable</strong>是java语言中所有错误和异常的超类（万物即可抛）。它有两个子类：<strong>Error</strong>、<strong>Exception</strong>。</p>
+<p>其中Error为错误，是程序无法处理的，如<strong>OutOfMemoryError</strong>、<strong>ThreadDeath</strong>等，出现这种情况你唯一能做的就是听之任之，交由JVM来处理，不过JVM在大多数情况下会选择终止线程。</p>
+<p>而Exception是程序可以处理的异常。它又分为两种CheckedException（受捡异常），一种是UncheckedException（不受检异常）。其中CheckException发生在编译阶段，必须要使用try…catch（或者throws）否则编译不通过。而UncheckedException发生在运行期，具有不确定性，主要是由于程序的逻辑问题所引起的，难以排查，我们一般都需要纵观全局才能够发现这类的异常错误，所以在程序设计中我们需要认真考虑，好好写代码，尽量处理异常，即使产生了异常，也能尽量保证程序朝着有利方向发展。</p>
+<p>所以：对于可恢复的条件使用被检查的异常（CheckedException），对于程序错误（言外之意不可恢复，大错已经酿成）使用运行时异常（RuntimeException）。</p>
+<p><strong>java的异常类实在是太多了，产生的原因也千变万化，所以下篇博文我将会整理，统计java中经常出现的异常，望各位关注！！</strong></p>
+<h2 id="四、异常使用"><a href="#四、异常使用" class="headerlink" title="四、异常使用"></a>四、异常使用</h2><p>在网上看了这样一个搞笑的话：世界上最真情的相依，是你在try我在catch。无论你发神马脾气，我都默默承受，静静处理。对于初学者来说异常就是try…catch，（鄙人刚刚接触时也是这么认为的，碰到异常就是try…catch）。个人感觉try…catch确实是用的最多也是最实用的。</p>
+<p>在异常中try快包含着可能出现异常的代码块，catch块捕获异常后对异常进行处理。先看如下实例：</p>
+<p>这是段非常简单的程序，用于读取D盘目录下的exceptionText.txt文件，同时读取其中的内容、输出。首先D盘没有该文件，运行程序结果如下：</p>
+<p>从这个结果我们可以看出这些：</p>
+<p>1、当程序遇到异常时会终止程序的运行（即后面的代码不在执行），控制权交由异常处理机制处理。</p>
+<p>2、catch捕捉异常后，执行里面的函数。</p>
+<p>当我们在D盘目录下新建一个exceptionTest.txt文件后，运行程序结果如下：</p>
+<p>11111是该文件中的内容。从这个运行结果可以得出这个结果：<strong>不论程序是否发生异常，finally代码块总是会执行。所以finally一般用来关闭资源。</strong></p>
+<p>在这里我们在看如下程序：</p>
+<p>程序运行结果：</p>
+<p>各位请注意这个异常信息和上面的异常信息错误，为了看得更加清楚，我将他们列在一起：</p>
+<p>在这里我们发现两个异常之间存在如下区别：第二个异常信息多了Exception in thread ”main”，这显示了出现异常信息的位置。在这里可以得到如下结论：<strong>若程序中显示的声明了某个异常，则抛出异常时不会显示出处，若程序中没有显示的声明某个异常，当抛出异常时，系统会显示异常的出处。</strong></p>
 
       
     </div>
@@ -496,7 +537,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://jiangweichen.me/posts/Music/2017-06-23-岁月神偷.html" title="岁月神偷">http://jiangweichen.me/posts/Music/2017-06-23-岁月神偷.html</a>
+      <a href="http://jiangweichen.me/posts/Java/2017-07-31-Java异常（一）.html" title="Java异常（一）">http://jiangweichen.me/posts/Java/2017-07-31-Java异常（一）.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -512,7 +553,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/music/" rel="tag"><i class="fa fa-tag"></i> music</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/异常/" rel="tag"><i class="fa fa-tag"></i> 异常</a>
           
         </div>
       
@@ -525,14 +568,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/posts/Java设计模式/2017-07-30-单例设计模式Singleton Pattern.html" rel="next" title="单例设计模式Singleton Pattern">
+                <i class="fa fa-chevron-left"></i> 单例设计模式Singleton Pattern
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/Git/2017-06-29-Git学习.html" rel="prev" title="Github-pages配置">
-                Github-pages配置 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/Java/2017-07-31-Java异常（二）.html" rel="prev" title="Java异常（二）">
+                Java异常（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -731,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、为什么要使用异常"><span class="nav-number">1.</span> <span class="nav-text">一、为什么要使用异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、基本定义"><span class="nav-number">2.</span> <span class="nav-text">二、基本定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、异常体系"><span class="nav-number">3.</span> <span class="nav-text">三、异常体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、异常使用"><span class="nav-number">4.</span> <span class="nav-text">四、异常使用</span></a></li></ol></div>
             
 
           </div>
