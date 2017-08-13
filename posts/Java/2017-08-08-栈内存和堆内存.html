@@ -13,8 +13,8 @@
 
 <script>
     (function(){
-        if('password'){
-            if (prompt('请输入文章密码') !== 'password'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -112,7 +112,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="password," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -128,21 +128,19 @@
 
 
 
-<meta name="description" content="测试密码为password">
-<meta name="keywords" content="password">
+<meta name="description" content="在Java代码中，常常会使用到这样的类的声明实例化： 1234Person per = new Person();//这其实是包含了两个步骤，声明和实例化Person per = null; //声明一个名为Person类的对象perper = new Person(); // 实例化这个per对象 声明 指的是创建类的对象的过程； 实例化 指的是用关键词new来开辟内存空间。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博文加密测试">
-<meta property="og:url" content="http://jiangweichen.me/posts/杂谈/2017-07-04-password-test.html">
+<meta property="og:title" content="栈内存和堆内存">
+<meta property="og:url" content="http://jiangweichen.me/posts/Java/2017-08-08-栈内存和堆内存.html">
 <meta property="og:site_name" content="Chen&#39;s Blog">
-<meta property="og:description" content="测试密码为password">
-<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/image/lake-sky-reflection-water-163862.jpg">
-<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/5fe461b3c77f000888070e566eb3001e.gif">
-<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/7ac15f62079941969d6b4708931e8fde.gif">
-<meta property="og:updated_time" content="2017-07-04T08:39:27.246Z">
+<meta property="og:description" content="在Java代码中，常常会使用到这样的类的声明实例化： 1234Person per = new Person();//这其实是包含了两个步骤，声明和实例化Person per = null; //声明一个名为Person类的对象perper = new Person(); // 实例化这个per对象 声明 指的是创建类的对象的过程； 实例化 指的是用关键词new来开辟内存空间。">
+<meta property="og:image" content="http://os73rgvu2.bkt.clouddn.com/heapAndStack.png">
+<meta property="og:updated_time" content="2017-08-08T08:28:06.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博文加密测试">
-<meta name="twitter:description" content="测试密码为password">
-<meta name="twitter:image" content="http://os73rgvu2.bkt.clouddn.com/image/lake-sky-reflection-water-163862.jpg">
+<meta name="twitter:title" content="栈内存和堆内存">
+<meta name="twitter:description" content="在Java代码中，常常会使用到这样的类的声明实例化： 1234Person per = new Person();//这其实是包含了两个步骤，声明和实例化Person per = null; //声明一个名为Person类的对象perper = new Person(); // 实例化这个per对象 声明 指的是创建类的对象的过程； 实例化 指的是用关键词new来开辟内存空间。">
+<meta name="twitter:image" content="http://os73rgvu2.bkt.clouddn.com/heapAndStack.png">
 
 
 
@@ -170,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="http://jiangweichen.me/posts/杂谈/2017-07-04-password-test.html"/>
+  <link rel="canonical" href="http://jiangweichen.me/posts/Java/2017-08-08-栈内存和堆内存.html"/>
 
 
 
 
 
-  <title>博文加密测试 | Chen's Blog</title>
+  <title>栈内存和堆内存 | Chen's Blog</title>
   
 
 
@@ -315,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/杂谈/2017-07-04-password-test.html">
+    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/Java/2017-08-08-栈内存和堆内存.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeichenJiang">
@@ -332,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博文加密测试</h1>
+          <h1 class="post-title" itemprop="name headline">栈内存和堆内存</h1>
         
 
         <div class="post-meta">
@@ -344,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T16:08:35+08:00">
-                2017-07-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T16:01:51+08:00">
+                2017-08-08
               </time>
             
 
@@ -360,8 +358,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-04T16:39:27+08:00">
-                2017-07-04
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-08T16:28:06+08:00">
+                2017-08-08
               </time>
             
           </span>
@@ -379,8 +377,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">杂谈</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -417,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  61字
+                  1,432字
                 </span>
               
 
@@ -433,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1分
+                  5分
                 </span>
               
             </div>
@@ -451,15 +449,25 @@
       
 
       
-        <p><img src="http://os73rgvu2.bkt.clouddn.com/image/lake-sky-reflection-water-163862.jpg" alt="ceshi"></p>
-<p>测试密码为password</p>
+        <p><img src="http://os73rgvu2.bkt.clouddn.com/heapAndStack.png" alt=""></p>
+<p><strong>在Java代码中，常常会使用到这样的类的声明实例化：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Person per = <span class="keyword">new</span> Person();</div><div class="line"><span class="comment">//这其实是包含了两个步骤，声明和实例化</span></div><div class="line">Person per = <span class="keyword">null</span>; <span class="comment">//声明一个名为Person类的对象per</span></div><div class="line">per = <span class="keyword">new</span> Person(); <span class="comment">// 实例化这个per对象</span></div></pre></td></tr></table></figure>
+<p><strong>声明 </strong>指的是创建类的对象的过程；</p>
+<p><strong>实例化 </strong>指的是用关键词new来开辟内存空间。</p>
 <a id="more"></a>
-<p>测试一下博文加密可不可以~</p>
-<p>其实没啥卵用。。。这种加密仅作娱乐使用，反正我的博客没多少人看~</p>
-<p>额- -具体步骤详见：</p>
-<p><a href="http://blog.csdn.net/lancelot_lewis/article/details/53422901" target="_blank" rel="external">Hexo文章简单加密访问</a></p>
-<p><img src="http://os73rgvu2.bkt.clouddn.com/5fe461b3c77f000888070e566eb3001e.gif" alt=""></p>
-<p><img src="http://os73rgvu2.bkt.clouddn.com/7ac15f62079941969d6b4708931e8fde.gif" alt=""></p>
+<h3 id="栈内存："><a href="#栈内存：" class="headerlink" title="栈内存："></a>栈内存：</h3><p>在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。栈内存主要存放的是基本类型类型的数据 如( int, short, long, byte, float, double, boolean, char) 和对象句柄。注意：并没有String基本类型、在栈内存的数据的大小及生存周期是必须确定的、其优点是寄存速度快、栈数据可以共享、缺点是数据固定、不够灵活。</p>
+<h4 id="栈的共享："><a href="#栈的共享：" class="headerlink" title="栈的共享："></a>栈的共享：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String str1 = <span class="string">"myString"</span>;</div><div class="line">String str2 = <span class="string">"myString"</span>; </div><div class="line">System.out.println(str1 == str2 );</div><div class="line"><span class="comment">//注意：这里使用的是str1 == str2，而不是str1.equals(str2)的方式。</span></div><div class="line"><span class="comment">//因为根据JDK的说明，==号只有在两个引用都指向了同一个对象时才返回真值</span></div><div class="line"><span class="comment">//而str1.equals(str2)，只是比较两个字符串是否相等</span></div></pre></td></tr></table></figure>
+<p>结果为True，这就说明了str1和str2其实指向的是同一个值。</p>
+<p>上述代码的原理是，首先在栈中创建一个变量为str1的引用，然后查找栈中是否有myString这个值，如果没找到，就将myString存放进来，然后将str1指向myString。接着处理String str2 = “myString”;；在创建完str2 的引用变量后，因为在栈中已经有myString这个值，便将str2 直接指向myString。这样，就出现了str1与str2 同时指向myString。</p>
+<p>特别注意的是，这种字面值的引用与类对象的引用不同。假定两个类对象的引用同时指向一个对象，如果一个对象引用变量修改了这个对象的内部状态，那么另一个对象引用变量也即刻反映出这个变化。相反，通过字面值的引用来修改其值，不会导致另一个指向此字面值的引用的值也跟着改变的情况。</p>
+<p>如上例，我们定义完str1与str2 的值后，再令str1=yourString；那么，str2不会等于yourString，还是等于myString。在编译器内部，遇到str1=yourString；时，它就会重新搜索栈中是否有yourString的字面值，如果没有，重新开辟地址存放yourString的值；如果已经有了，则直接将str1指向这个地址。因此str1值的改变不会影响到str2的值。</p>
+<h3 id="堆内存："><a href="#堆内存：" class="headerlink" title="堆内存："></a>堆内存：</h3><p>堆内存用于存放由new创建的对象和数组。在堆中分配的内存，由java虚拟机自动垃圾回收器来管理。在堆中产生了一个数组或者对象后，还可以在栈中定义一个特殊的变量，这个变量的取值等于数组或者对象在堆内存中的首地址，在栈中的这个特殊的变量就变成了数组或者对象的引用变量，以后就可以在程序中使用栈内存中的引用变量来访问堆中的数组或者对象，引用变量相当于为数组或者对象起的一个别名，或者代号。 </p>
+<p>引用变量是普通变量，定义时在栈中分配内存，引用变量在程序运行到作用域外释放。而数组＆对象本身在堆中分配，即使程序运行到使用new产生数组和对象的语句所在地代码块之外，数组和对象本身占用的堆内存也不会被释放，数组和对象在没有引用变量指向它的时候，才变成垃圾，不能再被使用，但是仍然占着内存，在随后的一个不确定的时间被垃圾回收器释放掉。这个也是java比较占内存的主要原因，实际上，栈中的变量指向堆内存中的变量，<strong>这就是 Java 中的指针!</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String str1 = <span class="keyword">new</span> String (<span class="string">"myString"</span>);</div><div class="line">String str2 = <span class="string">"myString"</span>;</div><div class="line">System.out.println(str1 ==str2 ); <span class="comment">//False </span></div><div class="line">String str1 = <span class="keyword">new</span> String (<span class="string">"myString"</span>);</div><div class="line">String str2 = <span class="keyword">new</span> String (<span class="string">"myString"</span>); </div><div class="line">System.out.println(str1==str2); <span class="comment">//False</span></div></pre></td></tr></table></figure>
+<p>创建了两个引用，创建了两个对象。两个引用分别指向不同的两个对象。以上两段代码说明，只要是用new()来新建对象的，都会在堆中创建，而且其字符串是单独存值的，即使与栈中的数据相同，也不会与栈中的数据共享。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>栈与堆都是Java用来在Ram中存放数据的地方。与C++不同，Java自动管理栈和堆，程序员不能直接地设置栈或堆。</p>
+<p><strong>Java的堆是一个运行时数据区,类的(对象从中分配空间。这些对象通过new、newarray、anewarray和multianewarray等指令建立，它们不需要程序代码来显式的释放。堆是由垃圾回收来负责的，堆的优势是可以动态地分配内存大小，生存期也不必事先告诉编译器，因为它是在运行时动态分配内存的，Java的垃圾收集器会自动收走这些不再使用的数据。但缺点是，由于要在运行时动态分配内存，存取速度较慢。</strong></p>
+<p><strong>栈的优势是，存取速度比堆要快，仅次于寄存器，栈数据可以共享。但缺点是，存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量(,int, short, long, byte, float, double, boolean, char)和对象句柄。</strong></p>
 
       
     </div>
@@ -504,7 +512,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://jiangweichen.me/posts/杂谈/2017-07-04-password-test.html" title="博文加密测试">http://jiangweichen.me/posts/杂谈/2017-07-04-password-test.html</a>
+      <a href="http://jiangweichen.me/posts/Java/2017-08-08-栈内存和堆内存.html" title="栈内存和堆内存">http://jiangweichen.me/posts/Java/2017-08-08-栈内存和堆内存.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -520,7 +528,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/password/" rel="tag"><i class="fa fa-tag"></i> password</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
         </div>
       
@@ -533,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/Git/2017-07-02-测试添加文章链接.html" rel="next" title="测试添加文章链接">
-                <i class="fa fa-chevron-left"></i> 测试添加文章链接
+              <a href="/posts/Java/2017-08-06-String-StringBuilder与StringBuffer.html" rel="next" title="String，StringBuilder与StringBuffer">
+                <i class="fa fa-chevron-left"></i> String，StringBuilder与StringBuffer
               </a>
             
           </div>
@@ -543,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/杂谈/2017-07-05-一些想法.html" rel="prev" title="一些想法">
-                一些想法 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/Git/2017-08-08-观察者设计模式.html" rel="prev" title="观察者设计模式">
+                观察者设计模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,8 +648,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://os73rgvu2.bkt.clouddn.com/favicon.png"
@@ -737,6 +754,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈内存："><span class="nav-number">1.</span> <span class="nav-text">栈内存：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈的共享："><span class="nav-number">1.1.</span> <span class="nav-text">栈的共享：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆内存："><span class="nav-number">2.</span> <span class="nav-text">堆内存：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

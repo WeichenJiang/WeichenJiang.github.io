@@ -1,0 +1,1050 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://os73rgvu2.bkt.clouddn.com/image/chen.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Java程序运行时，第一件事情就是试图访问main方法，因为main相等于程序的入口，如果没有main方法，程序将无法启动，main方法更是占一个独立的线程，找到main方法后，是不是就会执行mian方法块里的第一句话呢？答案是不一定。">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类中代码执行顺序以及赋值顺序">
+<meta property="og:url" content="http://jiangweichen.me/posts/Git/2017-08-12-Java类中代码执行顺序以及赋值顺序.html">
+<meta property="og:site_name" content="Chen&#39;s Blog">
+<meta property="og:description" content="Java程序运行时，第一件事情就是试图访问main方法，因为main相等于程序的入口，如果没有main方法，程序将无法启动，main方法更是占一个独立的线程，找到main方法后，是不是就会执行mian方法块里的第一句话呢？答案是不一定。">
+<meta property="og:updated_time" content="2017-08-13T07:18:56.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java类中代码执行顺序以及赋值顺序">
+<meta name="twitter:description" content="Java程序运行时，第一件事情就是试图访问main方法，因为main相等于程序的入口，如果没有main方法，程序将无法启动，main方法更是占一个独立的线程，找到main方法后，是不是就会执行mian方法块里的第一句话呢？答案是不一定。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jiangweichen.me/posts/Git/2017-08-12-Java类中代码执行顺序以及赋值顺序.html"/>
+
+
+
+
+
+  <title>Java类中代码执行顺序以及赋值顺序 | Chen's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我欲乘风破浪&nbsp;&nbsp;踏遍黄沙海洋</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/Git/2017-08-12-Java类中代码执行顺序以及赋值顺序.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeichenJiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://os73rgvu2.bkt.clouddn.com/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java类中代码执行顺序以及赋值顺序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T21:54:51+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-13T15:18:56+08:00">
+                2017-08-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+		  <span class="post-meta-divider">|</span>
+		  
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,057字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java程序运行时，第一件事情就是试图访问main方法，因为main相等于程序的入口，如果没有main方法，程序将无法启动，main方法更是占一个独立的线程，找到main方法后，是不是就会执行mian方法块里的第一句话呢？答案是不一定。</p>
+<a id="more"></a>
+<h3 id="看看下面两种最常见的情况："><a href="#看看下面两种最常见的情况：" class="headerlink" title="看看下面两种最常见的情况："></a>看看下面两种最常见的情况：</h3><h4 id="第一种情况："><a href="#第一种情况：" class="headerlink" title="第一种情况："></a>第一种情况：</h4><p>​    main方法在一个具有其他方法或属性的类中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test1</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Test start"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"main start"</span>);</div><div class="line">        Test1 bb = <span class="keyword">new</span> Test1();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第二种情况："><a href="#第二种情况：" class="headerlink" title="第二种情况："></a>第二种情况：</h4><p>​    main方法在一个没有其他方法或属性的类中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Student stu =<span class="keyword">new</span> Student();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>因为静态部分是依赖于类，而不是依赖于对象存在的，所以静态部分的加载优先于对象存在。</p>
+<p>当找到main方法后，因为main方法虽然是一个特殊的静态方法，但是还是静态方法，此时JVM会加载main方法所在的类，试图找到类中其他静态部分，即首先会找main方法所在的类。</p>
+<h3 id="Java程序执行顺序"><a href="#Java程序执行顺序" class="headerlink" title="Java程序执行顺序"></a>Java程序执行顺序</h3><ol>
+<li>静态属性，静态方法声明，静态块。</li>
+<li>动态属性，普通方法声明，构造块。</li>
+<li>构造方法。</li>
+</ol>
+<h4 id="静态："><a href="#静态：" class="headerlink" title="静态："></a>静态：</h4><p>当加载一个类时，JVM会根据属性的数据类型第一时间赋默认值（一举生成的）。然后再进行静态属性初始化，并为静态属性分配内存空间，静态方法的声明，静态块的加载，<strong>没有优先级之分</strong>，按出现顺序执行，<strong>静态部分仅仅加载一次</strong>。至此为止，必要的类都已经加载完毕，对象就可以被创建了。</p>
+<h4 id="普通："><a href="#普通：" class="headerlink" title="普通："></a>普通：</h4><p>当new一个对象时，此时会调用构造方法，但是在调用构造方法之前，（此刻1.1已经完成，除非被打断而暂停）执行动态属性定义并设置默认值（一举生成的）。然后动态属性初始化，分配内存，构造块，普通方法声明（只是加载，它不需要初始化，只有调用它时才分配内存，当方法执行完毕后内存立即释放），没有优先级之分，按出现顺序执行。最后进行构造方法中赋值。当再次创建一个对象，不再执行静态部分，仅仅重复执行普通部分。</p>
+<p><strong>注意：</strong>如果存在<strong>继承</strong>关系，创建对象时，依然会首先进行动态属性进行定义并设默认值，然后父类的构造器才会被调用，其他一切都是<strong>先父类再子类</strong>（因为子类的static初始化可能会依赖于父类成员能否被正确初始化），如果父类还有父类，依次类推，不管你是否打算产生一个该父类的对象，这都是自然发生的。</p>
+<p>下面是一道小程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"A的构造方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> j = print();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"A print"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="number">521</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Test1的构造方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> k = print();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Test print"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="number">522</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"main start"</span>);</div><div class="line">        Test t = <span class="keyword">new</span> Test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>分析：</strong></p>
+<ol>
+<li>main方法在类中，JVM会加载main方法所在的类Test，类Test继承了类A，所以先找到父类中的静态属性<code>public static int j</code>，执行<code>print()</code>，输出“A print”。</li>
+<li>接着执行子类Test中的静态属性<code>public static int k</code>，执行<code>print()</code>，输出“Test print”。</li>
+<li>静态按照顺序找到main方法，执行<code>System.out.println(&quot;main start&quot;);</code>，输出“main start”。</li>
+<li>最后<code>Test t</code>,加载Test类，会先加载Test的父类A，A中的静态已经加载过一次，所以执行构造方法，输出”A的构造方法”。接着加载Test类，执行Test 的构造方法，输出”Test的构造方法”。</li>
+</ol>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A print</div><div class="line">Test print</div><div class="line">main start</div><div class="line">A的构造方法</div><div class="line">Test的构造方法</div></pre></td></tr></table></figure>
+<blockquote>
+<p>执行顺序的原理要从JVM中类的装载机制和实例化机制了解，以后再说</p>
+</blockquote>
+<p>下面是一道阿里巴巴的面试题：非常经典，可以不断的改变程序的顺序，来找到执行顺序机制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Text t1 = <span class="keyword">new</span> Text(<span class="string">"t1"</span>);</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Text t2 = <span class="keyword">new</span> Text(<span class="string">"t2"</span>);</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> i = print(<span class="string">"i"</span>);</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">99</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> j = print(<span class="string">"j"</span>);</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        print(<span class="string">"构造块"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        print(<span class="string">"静态块"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Text</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        System.out.println((++k) + <span class="string">":"</span> + str + <span class="string">"   i="</span> + i + <span class="string">"    n="</span> + n);</div><div class="line">        ++i;</div><div class="line">        ++n;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">print</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        System.out.println((++k) + <span class="string">":"</span> + str + <span class="string">"   i="</span> + i + <span class="string">"    n="</span> + n);</div><div class="line">        ++n;</div><div class="line">        <span class="keyword">return</span> ++i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        Text t = <span class="keyword">new</span> Text(<span class="string">"init"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1:j   i=0    n=0</div><div class="line">2:构造块   i=1    n=1</div><div class="line">3:t1   i=2    n=2</div><div class="line">4:j   i=3    n=3</div><div class="line">5:构造块   i=4    n=4</div><div class="line">6:t2   i=5    n=5</div><div class="line">7:i   i=6    n=6</div><div class="line">8:静态块   i=7    n=99</div><div class="line">9:j   i=8    n=100</div><div class="line">10:构造块   i=9    n=101</div><div class="line">11:init   i=10    n=102</div></pre></td></tr></table></figure>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>只要按照这个步骤，遇到这一类问题就可以解决了。</p>
+<ol>
+<li><p>类中所有属性的默认值（一举而成）</p>
+</li>
+<li><p>父类静态属性初始化，静态块，静态方法的声明（按出现顺序执行）</p>
+</li>
+<li><p>子类静态属性初始化，静态块，静态方法的声明 （按出现顺序执行）</p>
+</li>
+<li><p>调用父类的构造方法，</p>
+<p>首先父类的非静态成员初始化，构造块，普通方法的声明（按出现顺序执行）</p>
+<p>然后父类构造方法</p>
+</li>
+</ol>
+<ol>
+<li><p>调用子类的构造方法，</p>
+<p>首先子类的非静态成员初始化，构造块，普通方法的声明（按出现顺序执行）</p>
+<p>然后子类构造方法</p>
+</li>
+</ol>
+<p>（<strong>注意</strong>：类加载过程中，可能调用了实例化过程（因为static可以修饰方法，属性，代码块，内部类），此时则会暂停类加载过程而先执行实例化过程（被打断），执行结束再进行类加载过程，上面阿里那道面试题就是典型的暂停类加载。</p>
+<h3 id="Java中赋值顺序"><a href="#Java中赋值顺序" class="headerlink" title="Java中赋值顺序"></a>Java中赋值顺序</h3><p>一个变量的值，它有可能在哪些地方确定呢？？</p>
+<h4 id="赋值来源"><a href="#赋值来源" class="headerlink" title="赋值来源"></a>赋值来源</h4><ol>
+<li>从父类继承该值（包括：1.作为父类的成员变量已经赋值  2.在父类的块中赋值  3.在父类的构造器中赋值）</li>
+<li>在构造器中对其进行赋值</li>
+<li>在块中进行赋值</li>
+<li>在方法调用中进行赋值</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> String type=<span class="string">"父类成员变量赋的值"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"父类构造器--type--&gt;"</span>+type);</div><div class="line">        type=<span class="string">"父类构造器赋的值"</span>;</div><div class="line">        System.out.println(<span class="string">"父类构造器----type---&gt;"</span>+type);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"block---type---&gt;"</span>+type);</div><div class="line">        type=<span class="string">"父类块赋的值"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LittleDog</span>  <span class="keyword">extends</span> <span class="title">Dog</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> String type=<span class="string">"成员变量赋的值"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LittleDog</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"构造器---type---&gt;"</span>+type);</div><div class="line">        type=<span class="string">"构造器赋的值"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"say---type----&gt;"</span>+type);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"block---type---&gt;"</span>+type);</div><div class="line">        type=<span class="string">"块赋的值"</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        LittleDog littleDog=<span class="keyword">new</span> LittleDog();</div><div class="line">        littleDog.say();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">block---type---&gt;父类成员变量赋的值</div><div class="line">父类构造器--type--&gt;父类块赋的值</div><div class="line">父类构造器----type---&gt;父类构造器赋的值</div><div class="line">block---type---&gt;成员变量赋的值</div><div class="line">构造器---type---&gt;块赋的值</div><div class="line">say---type----&gt;构造器赋的值</div></pre></td></tr></table></figure>
+<p>答案很明显，赋值顺序为：</p>
+<ol>
+<li>父类成员变量赋值</li>
+<li>父类块赋值</li>
+<li>父类构造器赋值</li>
+<li>自身成员变量赋值</li>
+<li>自身块赋值</li>
+<li>自身构造器赋值</li>
+</ol>
+<h4 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h4><p>结合我们前面说的程序中的执行顺序，这个显然是很好理解的：</p>
+<p>   1.成员变量赋值&gt;&gt;&gt;块赋值&gt;&gt;&gt;构造器赋值</p>
+<p>   2.父类的块&gt;&gt;父类构造器&gt;&gt;自身块&gt;&gt;自身构造器</p>
+<p> 又因为一个成员变量是不可能在静态变量中赋值的，而且又前面程序执行顺序可知</p>
+<p>​    静态块&gt;&gt;块</p>
+<p>所以，<strong>程序的赋值步骤为</strong>：</p>
+<ol>
+<li>父类的静态变量赋值</li>
+<li>自身的静态变量赋值</li>
+<li>父类成员变量赋值</li>
+<li>父类块赋值</li>
+<li>父类构造器赋值</li>
+<li>自身成员变量赋值</li>
+<li>自身块赋值</li>
+<li>自身构造器赋值</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>求大爷赏点狗粮啊~~~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://os73rgvu2.bkt.clouddn.com/erweima.png" alt="WeichenJiang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      WeichenJiang
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://jiangweichen.me/posts/Git/2017-08-12-Java类中代码执行顺序以及赋值顺序.html" title="Java类中代码执行顺序以及赋值顺序">http://jiangweichen.me/posts/Git/2017-08-12-Java类中代码执行顺序以及赋值顺序.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/Git/2017-08-08-观察者设计模式.html" rel="next" title="观察者设计模式">
+                <i class="fa fa-chevron-left"></i> 观察者设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/Java/2017-08-12-Java基本类型占用字节数.html" rel="prev" title="Java基本类型占用字节数">
+                Java基本类型占用字节数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=1f0f357c832e8"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+      
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src='/lib/Valine.min.js'></script>
+        <script>
+            new Valine({
+                av: AV,
+				 
+				verify: true,  
+                app_id: 'ghOyBkngtHd4qk5jYjSYlNBC-gzGzoHsz',
+                app_key: 'u4kXDJP9A8mdA2fQPGs5f7zn',
+                el: '.comments' 
+				placeholder: '快来评论啊！！！'
+            });
+        </script>
+      
+  </div>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://os73rgvu2.bkt.clouddn.com/favicon.png"
+               alt="WeichenJiang" />
+          <p class="site-author-name" itemprop="name">WeichenJiang</p>
+           
+              <p class="site-description motion-element" itemprop="description">静如瘫痪，动若癫痫</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/weichenjiang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/234930403" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jiangweichen.me/progit" title="ProGit" target="_blank">ProGit</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#看看下面两种最常见的情况："><span class="nav-number">1.</span> <span class="nav-text">看看下面两种最常见的情况：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种情况："><span class="nav-number">1.1.</span> <span class="nav-text">第一种情况：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种情况："><span class="nav-number">1.2.</span> <span class="nav-text">第二种情况：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析："><span class="nav-number">1.3.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java程序执行顺序"><span class="nav-number">2.</span> <span class="nav-text">Java程序执行顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态："><span class="nav-number">2.1.</span> <span class="nav-text">静态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#普通："><span class="nav-number">2.2.</span> <span class="nav-text">普通：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">2.3.</span> <span class="nav-text">总结：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中赋值顺序"><span class="nav-number">3.</span> <span class="nav-text">Java中赋值顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值来源"><span class="nav-number">3.1.</span> <span class="nav-text">赋值来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论："><span class="nav-number">3.2.</span> <span class="nav-text">结论：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By -WeichenJiang</span>
+</div>
+
+
+<div class="powered-by">
+    琛哥的博客
+</div>
+
+<div class="theme-info">
+
+  <span class="post-count">全站共30.1k字</span>
+
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript">
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>
