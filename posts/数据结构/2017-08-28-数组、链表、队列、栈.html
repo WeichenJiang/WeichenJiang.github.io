@@ -1,0 +1,1012 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://os73rgvu2.bkt.clouddn.com/image/chen.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="很惭愧，学了六年，基本知识还是搞不清-。- 简单来讲：四种都是数据结构。数组和链表对应，队列和栈可以用数组或链表来实现">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组、链表、队列、栈">
+<meta property="og:url" content="http://jiangweichen.me/posts/数据结构/2017-08-28-数组、链表、队列、栈.html">
+<meta property="og:site_name" content="Chen&#39;s Blog">
+<meta property="og:description" content="很惭愧，学了六年，基本知识还是搞不清-。- 简单来讲：四种都是数据结构。数组和链表对应，队列和栈可以用数组或链表来实现">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_130261676331Xx.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302616849B2CF.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302616918A0bU.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302616956C3Wv.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_13026169865Obb.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617025kT9k.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617076aapk.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617114qAee.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617149u8dl.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617189i9xJ.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201104/12/0_1302617224C8iB.gif">
+<meta property="og:updated_time" content="2017-10-20T08:49:01.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组、链表、队列、栈">
+<meta name="twitter:description" content="很惭愧，学了六年，基本知识还是搞不清-。- 简单来讲：四种都是数据结构。数组和链表对应，队列和栈可以用数组或链表来实现">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201104/12/0_130261676331Xx.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jiangweichen.me/posts/数据结构/2017-08-28-数组、链表、队列、栈.html"/>
+
+
+
+
+
+  <title>数组、链表、队列、栈 | Chen's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我欲乘风破浪&nbsp;&nbsp;踏遍黄沙海洋</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jiangweichen.me/posts/数据结构/2017-08-28-数组、链表、队列、栈.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeichenJiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://os73rgvu2.bkt.clouddn.com/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数组、链表、队列、栈</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T10:54:20+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-20T16:49:01+08:00">
+                2017-10-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+		  <span class="post-meta-divider">|</span>
+		  
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,365字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5分
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很惭愧，学了六年，基本知识还是搞不清-。-</p>
+<p>简单来讲：四种都是数据结构。数组和链表对应，队列和栈可以用数组或链表来实现</p>
+<a id="more"></a>
+<p><strong>数据结构</strong>：是指相互之间存在一种或多种特定关系的数据元素的集合。听起来是不是很抽象，简单理解：数据结构就是描述对象间逻辑关系的学科。比如：队列就是一种先进先出的逻辑结构，栈是一种先进后出的逻辑结构，家谱是一种树形的逻辑结构！（初学数据结构的时候很不理解为什么有“栈”这个东西；队列很容易理解—无论购物就餐都需要排队；栈可以认为就是个栈道—只允许一个人通过的小道，而且只能从一端进入，然后再从这端返回，比如你推了个箱子进去啦，第二个人也推个箱子进去，此时只能等后进来的这个人拉着箱子出去后，你才能退出。）</p>
+<p><strong>数据存储结构</strong>：它是计算机的一个概念，简单讲，就是描述数据在计算机中存储方式的学科；常用的数据存储方式就两种：顺序存储，非顺序存储！顺序存储就是把数据存储在一块连续的存储介质（比如硬盘或内存）上—-举个例子：从内存中拿出第100个字节到1000个字节间的连续位置，存储数据；数组就是典型的顺序存储！非顺序存储就是各个数据不一定存在一个连续的位置上，只要每个数据知道它前面的数据和后面的数据，就能把所有数据连续起来啦；链表就是典型的非顺序存储啦！</p>
+<p><strong>数组、链表、堆栈和队列是最基本的数据结构，任何程序都会涉及到其中的一种或多种。</strong></p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>​     数组是最最基本的数据结构，很多语言都内置支持数组。数组是使用一块连续的内存空间保存数据，保存的数据的个数在分配内存的时候就是确定的：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_130261676331Xx.gif" alt="图 1.1 包含 n 个数据的数组"> </p>
+<p>图 1.1 包含 n 个数据的数组</p>
+<p>​     访问数组中第 n 个数据的时间花费是 O(1) ，但是要在数组中查找一个指定的数据则是 O(N)。当向数组中插入或者删除数据的时候，最好的情况是在数组的末尾进行操作，时间复杂度是O(1) ，但是最坏情况是插入或者删除第一个数据，时间复杂度是 O(N) 。在数组的任意位置插入或者删除数据的时候，后面的数据全部需要移动，移动的数据还是和数据个数有关所以总体的时间复杂度仍然是 O(N) 。</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302616849B2CF.gif" alt="img"> </p>
+<p>图 1.2 向数组中插入数据</p>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><p>​     链表是在非连续的内存单元中保存数据，并且通过指针将各个内存单元链接在一起，最有一个节点的指针指向 NULL 。链表不需要提前分配固定大小存储空间，当需要存储数据的时候分配一块内存并将这块内存插入链表中。</p>
+<p>​     在链表中查找第 n 个数据以及查找指定的数据的时间复杂度是 O(N) ，但是插入和删除数据的时间复杂度是 O(1) ，因为只需要调整指针就可以：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302616918A0bU.gif" alt="img"> </p>
+<p>图 2.1 链表</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302616956C3Wv.gif" alt="img"> </p>
+<p>图 2.2 向链表中插入一个数据</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_13026169865Obb.gif" alt="img"> </p>
+<p>图 2.3 从链表中删除一个数据</p>
+<p>​     向上面这样的链表结构在插入和删除的时候编程会比较困难，因为需要记住当前节点的前一个节点，这样才能完成插入和删除。为了简便通常使用带有头节点的链表：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617025kT9k.gif" alt="img"> </p>
+<p>图 2.4 带有头节点的单链表</p>
+<p>​     上面的链表是单链表，此外还有双链表，就是节点中包含指向下一个节点的指针和指向上一个节点的指针：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617076aapk.gif" alt="img"> </p>
+<p>图 2.5 双向链表</p>
+<p>​     不带有头节点的双向链表在插入和删除数据的时候也不会出现单链表那样的问题。此外还有一种链表是循环链表，它是将双向链表的头尾相接：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617114qAee.gif" alt="img"> </p>
+<p>图 2.6 双向循环链表</p>
+<p>​     向循环双向链表和循环链表中插入或者从中删除数据只是多移动几个指针。</p>
+<h1 id="3-堆栈"><a href="#3-堆栈" class="headerlink" title="3 堆栈"></a>3 堆栈</h1><p>​     堆栈实现了一种后进先出的语义 (LIFO) 。可以使用数组或者是链表来实现它：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617149u8dl.gif" alt="img"> </p>
+<p>图 3.1 堆栈</p>
+<p>​     对于堆栈中的数据的所有操作都是在栈的顶部完成的，只可以查看栈顶部的数据，只能够向栈的顶部压入数据，也只能从栈的顶部弹出数据。</p>
+<h1 id="4-队列"><a href="#4-队列" class="headerlink" title="4 队列"></a>4 队列</h1><p>​     队列实现了先入先出的语义 (FIFO) 。队列也可以使用数组和链表来实现：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617189i9xJ.gif" alt="img"> </p>
+<p>图 4.1 队列</p>
+<p>​         队列只允许在队尾添加数据，在队头删除数据。但是可以查看队头和队尾的数据。还有一种是双端队列，在两端都可以插入和删除：</p>
+<p><img src="http://hi.csdn.net/attachment/201104/12/0_1302617224C8iB.gif" alt="img"> </p>
+<p>图 4.2 双端队列</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>求大爷赏点狗粮啊~~~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://os73rgvu2.bkt.clouddn.com/erweima.png" alt="WeichenJiang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      WeichenJiang
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://jiangweichen.me/posts/数据结构/2017-08-28-数组、链表、队列、栈.html" title="数组、链表、队列、栈">http://jiangweichen.me/posts/数据结构/2017-08-28-数组、链表、队列、栈.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/Java/2017-08-12-Java基本类型占用字节数.html" rel="next" title="Java基本类型占用字节数">
+                <i class="fa fa-chevron-left"></i> Java基本类型占用字节数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/数据库/2017-08-31-对事务的理解.html" rel="prev" title="对事务的理解">
+                对事务的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=1f0f357c832e8"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+      
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src='/lib/Valine.min.js'></script>
+        <script>
+            new Valine({
+                av: AV,
+				 
+				verify: true,  
+                app_id: 'ghOyBkngtHd4qk5jYjSYlNBC-gzGzoHsz',
+                app_key: 'u4kXDJP9A8mdA2fQPGs5f7zn',
+                el: '.comments',
+				placeholder: '快来评论啊！！！'
+            });
+        </script>
+      
+  </div>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://os73rgvu2.bkt.clouddn.com/favicon.png"
+               alt="WeichenJiang" />
+          <p class="site-author-name" itemprop="name">WeichenJiang</p>
+           
+              <p class="site-description motion-element" itemprop="description">静如瘫痪，动若癫痫</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/weichenjiang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/234930403" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jiangweichen.me/progit" title="ProGit" target="_blank">ProGit</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-堆栈"><span class="nav-number">3.</span> <span class="nav-text">3 堆栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-队列"><span class="nav-number">4.</span> <span class="nav-text">4 队列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By -WeichenJiang</span>
+</div>
+
+
+<div class="powered-by">
+    琛哥的博客
+</div>
+
+<div class="theme-info">
+
+  <span class="post-count">全站共31.8k字</span>
+
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript">
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>
